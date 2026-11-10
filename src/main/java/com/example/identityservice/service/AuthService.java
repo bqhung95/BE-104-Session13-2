@@ -20,7 +20,6 @@ public class AuthService {
             throw new RuntimeException("Username đã tồn tại");
         }
 
-        // Băm mật khẩu trước khi lưu
         String encodedPassword = passwordEncoder.encode(request.getPassword());
 
         User user = User.builder()
@@ -36,5 +35,13 @@ public class AuthService {
                 .username(saved.getUsername())
                 .role(saved.getRole())
                 .build();
+    }
+
+    /**
+     * Lấy User theo username — dùng cho API test-token
+     */
+    public User findByUsername(String username) {
+        return userRepository.findByUsername(username)
+                .orElseThrow(() -> new RuntimeException("User không tồn tại: " + username));
     }
 }

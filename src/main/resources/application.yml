@@ -8,7 +8,7 @@ spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/identity_db
     username: postgres
-    password: postgres
+    password: hung123
     driver-class-name: org.postgresql.Driver
 
   jpa:
@@ -19,3 +19,9 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
         format_sql: true
+
+        jwt:
+          # Chuỗi secret 256-bit (>= 32 ký tự). Nên đặt trong ENV khi production.
+          secret: "mySuperSecretKeyForJwtIdentityService2024ChangeMeInProduction!!"
+          # 3.600.000 ms = 1 giờ
+          expiration: 3600000
